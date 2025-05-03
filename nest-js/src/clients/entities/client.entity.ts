@@ -5,7 +5,7 @@ export class Client {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({name : 'clientName'})
+    @Column()
     name: string;
 
     @Column()
