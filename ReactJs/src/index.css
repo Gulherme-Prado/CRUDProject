@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, system-ui, Avenir, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -26,7 +26,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: block;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -38,20 +38,55 @@ h1 {
 }
 
 button {
-  border: 2px solid;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
+  font-family: Arial;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+.close-dialog-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  line-height: 1;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 16px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.header-nav-container {
+  display: flex;
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Alinha os itens verticalmente */
+  width: 100%; /* Para garantir que ocupe a largura completa */
+}
+
+header {
+  background-color: white;
+  padding: 0 1rem; /* Espaçamento nas laterais */
+  height: 80px; /* Definindo altura fixa para o header */
+  display: flex;
+  align-items: center; /* Centraliza os itens verticalmente */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  align-items: center; /* Garante que o conteúdo dentro do botão esteja centralizado verticalmente */
+  justify-content: center; /* Garante que o conteúdo dentro do botão esteja centralizado horizontalmente */
 }
 
 @media (prefers-color-scheme: light) {

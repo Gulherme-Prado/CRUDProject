@@ -8,9 +8,9 @@ export class Client {
     @Column()
     name: string;
 
-    @Column()
+    @Column('decimal', {precision: 10, scale: 2})
     salary: number;
 
-    @Column()
+    @Column('decimal', {precision: 10, scale: 2})
     companyValue: number; 
 }

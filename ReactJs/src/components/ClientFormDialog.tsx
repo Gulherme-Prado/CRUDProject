@@ -41,6 +41,11 @@ export const ClientFormDialog = ({
     e.preventDefault();
     try {
       await onSubmit(formData);
+      setFormData({
+        name: "",
+        salary: 0,
+        companyValue: 0,
+      });
     } catch (error) {
       console.error("Error while saving client:", error);
     }
@@ -63,68 +68,71 @@ export const ClientFormDialog = ({
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <DialogPanel className="w-full max-w-md rounded bg-white p-6">
-          <DialogTitle className="text-xl font-bold mb-4">
-            {client ? "Editar Usuário" : "Novo Usuário"}
-          </DialogTitle>
+          <div className="flex items-center justify-between mb-4 min-h-[40px]">
+            <div className="flex items-center flex-1">
+              <DialogTitle className=" text-xl font-bold mb-4 text-black border-top: 10px">
+                {client ? "Editar Cliente:" : "Novo Cliente:"}
+              </DialogTitle>
+            </div>
+            <button
+              onClick={() => {
+                onClose();
+                setFormData({ name: "", salary: 0, companyValue: 0 });
+              }}
+              className="close-dialog-button"
+              aria-label="Fechar"
+            >
+              &times;
+            </button>
+          </div>
 
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Nome</label>
                 <input
                   type="text"
                   value={formData.name}
+                  placeholder="Digite o nome:"
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border border-solid border-gray-400 rounded-md placeholder-gray-400 text-black"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Salário
-                </label>
                 <input
                   type="text"
                   value={displayCurrency(formData.salary)}
+                  placeholder="Digite o salário:"
                   onChange={(e) => {
                     const value = formatCurrencyInput(e.target.value);
                     setFormData({ ...formData, salary: value });
                   }}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border border-solid border-gray-400 rounded-md placeholder-gray-400 text-black"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Valor da Empresa
-                </label>
                 <input
                   type="text"
                   value={displayCurrency(formData.companyValue)}
+                  placeholder="Digite o valor da empresa:"
                   onChange={(e) => {
                     const value = formatCurrencyInput(e.target.value);
                     setFormData({ ...formData, companyValue: value });
                   }}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border border-solid border-gray-400 rounded-md placeholder-gray-400 text-black"
                   required
                 />
               </div>
             </div>
             <div className="flex justify-end space-x-3 mt-6">
               <button
-                type="button"
-                onClick={onClose}
-                className="px-4 py-2 text-gray-700"
-              >
-                Cancelar
-              </button>
-              <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded"
+                className="px-4 py-2 bg-orange-500 text-white rounded w-full"
               >
                 Salvar
               </button>

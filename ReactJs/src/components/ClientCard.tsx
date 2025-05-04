@@ -2,6 +2,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
   PlusCircleIcon,
+  MinusCircleIcon,
 } from "@heroicons/react/24/outline";
 import { Client } from "../types/client";
 
@@ -28,37 +29,40 @@ export const ClientCard = ({
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-md p-4 border ${
-        isSelected ? "border-blue-500" : "border-gray-200"
+      className={`bg-white shadow-md p-2  ${
+        isSelected ? "border-orange-500" : "border-gray-200"
       }`}
     >
-      <div className="flex justify-between items-start">
-        <h3 className="text-lg font-semibold">{client.name}</h3>
+      <div className="mt-2">
+        <h3 className="text-lg font-bold text-black ">{client.name}</h3>
+        <p className="text-black mt-1">
+          Salário: {formatCurrency(client.salary)}
+        </p>
+        <p className="text-black mt-1">
+          Valor Empresa: {formatCurrency(client.companyValue)}
+        </p>
+      </div>
+
+      <div className="flex justify-between items-center">
         <button
           onClick={() => onSelect(client.id)}
-          className="text-green-500 gover:text-green-700"
+          className="text-black hover:text-green-700"
         >
-          <PlusCircleIcon className="h-6 w-6" />
+          {isSelected ? (
+            <MinusCircleIcon className="h-7 w-7 hover:text-red-700" />
+          ) : (
+            <PlusCircleIcon className="h-7 w-7" />
+          )}
         </button>
-      </div>
 
-      <div className="mt-2">
-        <p>Salário: {formatCurrency(client.salary)}</p>
-        <p>Valor Empresa: {formatCurrency(client.companyValue)}</p>
-      </div>
-
-      <div className="mt-4 flex justify-end space-x-2">
         <button
           onClick={() => onEdit(client.id)}
-          className="text-blue-500 hover:text-blue-700"
+          className="text-black hover:text-orange-500"
         >
-          <PencilSquareIcon className="h-5 w-5" />
+          <PencilSquareIcon className="h-7 w-7" />
         </button>
-        <button
-          onClick={() => onDelete(client.id)}
-          className="text-red-500 hover:text-red-700"
-        >
-          <TrashIcon className="h-5 w-5" />
+        <button onClick={() => onDelete(client.id)} className="text-red-600">
+          <TrashIcon className="h-7 w-7" />
         </button>
       </div>
     </div>
