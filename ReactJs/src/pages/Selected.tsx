@@ -51,7 +51,7 @@ export function Selected() {
             Clientes Selecionados ({selectedIds.length})
           </button>
           <button
-            onClick={() => (window.location.href = "/home")}
+            onClick={() => (window.location.href = "/")}
             className="nav-button"
           >
             Sair

@@ -59,7 +59,6 @@ button {
   border: none;
   cursor: pointer;
   transition: all 0.2s;
-  margin-left: 16px;
 }
 
 .header-nav-container {

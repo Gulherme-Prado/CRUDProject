@@ -96,7 +96,7 @@ export function Dashboard() {
           >
             Clientes Selecionados ({selectedIds.length})
           </button>
-          <button onClick={() => navigate("/home")} className="nav-button">
+          <button onClick={() => navigate("/")} className="nav-button">
             Sair
           </button>
         </div>

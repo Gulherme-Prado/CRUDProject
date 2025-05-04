@@ -68,18 +68,19 @@ export const ClientFormDialog = ({
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <DialogPanel className="w-full max-w-md rounded bg-white p-6">
-          <div className="flex items-center justify-between mb-4 min-h-[40px]">
-            <div className="flex items-center flex-1">
-              <DialogTitle className=" text-xl font-bold mb-4 text-black border-top: 10px">
-                {client ? "Editar Cliente:" : "Novo Cliente:"}
-              </DialogTitle>
-            </div>
+          <div className="relative mb-4">
+            <DialogTitle
+              as="h3"
+              className="text-xl font-bold text-black text-center m-0 py-2"
+            >
+              {client ? "Editar Cliente:" : "Novo Cliente:"}
+            </DialogTitle>
             <button
               onClick={() => {
                 onClose();
                 setFormData({ name: "", salary: 0, companyValue: 0 });
               }}
-              className="close-dialog-button"
+              className="absolute right-0 top-1/2 -translate-y-1/2 close-dialog-button"
               aria-label="Fechar"
             >
               &times;
