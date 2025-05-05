@@ -3,13 +3,14 @@ import { ClientCard } from "../components/ClientCard";
 import { api } from "../api/api";
 import { Client } from "../types/client";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 export function Selected() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const userName = localStorage.getItem("userName") || "Visitante";
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedIds = localStorage.getItem("selectedIds") || "[]";
     if (storedIds) {
@@ -37,7 +38,7 @@ export function Selected() {
       <header className="bg-white shadow-sm p-4">
         <div className="header-nav-container text-black">
           <button
-            onClick={() => (window.location.href = "/dashboard")}
+            onClick={() => navigate("/dashboard")}
             className={classNames("nav-button", {
               "text-black": true,
             })}
@@ -45,28 +46,26 @@ export function Selected() {
             Clientes
           </button>
           <button
-            onClick={() => (window.location.href = "/selected")}
+            onClick={() => navigate("/selected")}
             className={classNames("nav-button text-orange-500 font-semibold")}
           >
             Clientes Selecionados ({selectedIds.length})
           </button>
-          <button
-            onClick={() => (window.location.href = "/")}
-            className="nav-button"
-          >
+          <button onClick={() => navigate("/")} className="nav-button">
             Sair
           </button>
         </div>
-        <div className="flex items-center text-black whitespace-nowrap">
-          <span className="mr-1">Olá,</span>
-          <span className="font-semibold">{userName}</span>
+        <div className="flex items-center text-black whitespace-nowrap ml-auto">
+          Olá, <span className="ml-2 pr-10 font-semibold">{userName}</span>
         </div>
       </header>
 
       <main className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold text-black mb-6">
-          Clientes Selecionados
-        </h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2x1 text-black font-bold">
+            Clientes Selecionados
+          </h1>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredClients.map((client) => (

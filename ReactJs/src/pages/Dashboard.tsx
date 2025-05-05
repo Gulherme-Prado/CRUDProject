@@ -28,6 +28,10 @@ export function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Dashboard";
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("selectedIds", JSON.stringify(selectedIds));
   }, [selectedIds]);
 
@@ -83,8 +87,8 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow-sm p-4">
-        <div className="header-nav-container text-black">
+      <header className="bg-white shadow-sm px-6 py-4">
+        <div className="header-nav-container text-black flex space-x-4">
           <button
             onClick={() => navigate("/dashboard")}
             className={classNames("nav-button", {
@@ -107,8 +111,8 @@ export function Dashboard() {
             Sair
           </button>
         </div>
-        <div className="flex items-center text-black whitespace-nowrap">
-          Olá, <span className="font-semibold">{userName}</span>
+        <div className="flex items-center text-black whitespace-nowrap ml-auto">
+          Olá, <span className="ml-2 pr-10 font-semibold">{userName}</span>
         </div>
       </header>
       <main className="container mx-auto p-4">

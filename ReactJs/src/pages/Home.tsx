@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -11,9 +11,12 @@ export function Home() {
     navigate("/dashboard");
   };
 
+  useEffect(() => {
+    document.title = "Bem-vindo!";
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
-      {/* Div branca ocupando toda altura e largura */}
       <div className="bg-white w-full flex flex-col items-center justify-center">
         <div className="w-full max-w-md px-8">
           <h1 className="text-2xl text-center mb-8 text-gray-800">
