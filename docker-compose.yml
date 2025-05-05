@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15-alpine
+    env_file: ./nest-js/.env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 474269
+      POSTGRES_DB: users_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./nest-js
+    env_file: ./nest-js/.env
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PASSWORD: 474269
+    depends_on:
+      - db
+
+  frontend:
+    build: ./react-js
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      
+volumes:
+  pg_data:
