@@ -1,23 +1,27 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Client } from './clients/entities/client.entity';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type:'postgres',
-      host:'localhost',
+      type: 'postgres',
+      host: process.env.DB_HOST || 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: '474269',
-      database: 'users_db',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [Client],
-      synchronize: true,
+      synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
-    ClientsModule],
+    ClientsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
