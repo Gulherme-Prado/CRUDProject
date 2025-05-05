@@ -54,10 +54,10 @@ npm run dev
 
 ## Endpoints
 ### Docker     
--http://localhost (Acessar a aplicação)
--http://localhost:3000/api (SwaggerUI)
+- http://localhost (Acessar a aplicação)
+- http://localhost:3000/api (SwaggerUI)
 
 ## Localmente
--http://localhost:5173 (Acessar a aplicação)  
--http://localhost:3000/api (SwaggerUI)
+- http://localhost:5173 (Acessar a aplicação)  
+- http://localhost:3000/api (SwaggerUI)
   
