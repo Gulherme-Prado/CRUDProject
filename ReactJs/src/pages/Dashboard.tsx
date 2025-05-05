@@ -14,7 +14,14 @@ export function Dashboard() {
   const [currentClient, setCurrentClient] = useState<Client | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const userName = localStorage.getItem("userName") || "Visitante";
+  const [page, setPage] = useState(1);
+  const [clientsPerPage, setClientsPerPage] = useState(15);
 
+  const totalPages = Math.ceil(clients.length / clientsPerPage);
+  const paginatedClients = clients.slice(
+    (page - 1) * clientsPerPage,
+    page * clientsPerPage
+  );
   const location = useLocation();
   const isDashboard = location.pathname === "/dashboard";
   const isSelected = location.pathname === "/selected";
@@ -111,10 +118,27 @@ export function Dashboard() {
               Clientes Cadastrados
             </h1>
           </div>
-
+          <div className="flex justify-end mb-4">
+            <label className="text-black mr-2 font-medium">
+              Clientes por página:
+            </label>
+            <input
+              type="number"
+              min={1}
+              value={clientsPerPage}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                if (!isNaN(value) && value > 0) {
+                  setClientsPerPage(value);
+                  setPage(1); // resetar para primeira página
+                }
+              }}
+              className="w-20 px-2 py-1 border border-gray-300 rounded text-black"
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Array.isArray(clients) &&
-              clients.map((client) => (
+            {Array.isArray(paginatedClients) &&
+              paginatedClients.map((client) => (
                 <ClientCard
                   key={client.id}
                   client={client}
@@ -127,6 +151,25 @@ export function Dashboard() {
                   isSelected={selectedIds.includes(client.id)}
                 />
               ))}
+          </div>
+          <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
+            {Array.from({ length: totalPages }, (_, index) => {
+              const pageNumber = index + 1;
+              return (
+                <button
+                  key={pageNumber}
+                  onClick={() => setPage(pageNumber)}
+                  className={classNames("px-3 py-1 border rounded", {
+                    "bg-orange-500 text-white font-semibold":
+                      pageNumber === page,
+                    "bg-white text-black hover:bg-gray-100":
+                      pageNumber !== page,
+                  })}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
           </div>
           <ClientFormDialog
             isOpen={isDialogOpen}
