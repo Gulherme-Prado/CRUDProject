@@ -18,7 +18,7 @@ cd CRUDProject
 
 # 2. Configure as variáveis de ambiente
 cd nest-js
-cp .env.example .env 
+mv .env.example .env 
 cd ..
 
 # 3. Execute os containers
@@ -34,12 +34,14 @@ docker compose up --build
 # 1. Configure o banco de dados
 # Crie um banco chamado 'users_db' no PostgreSQL
 
-# 2. Instale e execute o backend
+# 2. Configure as variáveis de ambiente
 cd nest-js
-cp .env.example .env  # Retirar o .example do nome para usar as variáveis de ambiente
+mv .env.example .env
+
+# 3. Instale as dependências
 npm install
 
-# 3. Inicie o backend
+# 4. Inicie o backend
 npm run start:dev
 ```
 
