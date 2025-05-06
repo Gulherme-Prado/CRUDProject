@@ -68,10 +68,10 @@ export const ClientFormDialog = ({
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <DialogPanel className="w-full max-w-md rounded bg-white p-6">
-          <div className="relative mb-4">
+          <div className="relative mb-4 justify-between">
             <DialogTitle
               as="h3"
-              className="text-xl font-bold text-black text-center m-0 py-2"
+              className="text-xl font-bold text-black  m-0 py-2"
             >
               {client ? "Editar Cliente:" : "Novo Cliente:"}
             </DialogTitle>

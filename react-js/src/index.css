@@ -48,12 +48,13 @@ button {
 
 .close-dialog-button {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
   width: 45px;
   height: 45px;
-  font-size: 30px;
-  line-height: 1;
+  font-size: 35px;
+  line-height: 0.2;
   color: #6b7280;
   background: none;
   border: none;
@@ -63,18 +64,18 @@ button {
 
 .header-nav-container {
   display: flex;
-  justify-content: center; /* Centraliza os itens horizontalmente */
-  align-items: center; /* Alinha os itens verticalmente */
-  width: 100%; /* Para garantir que ocupe a largura completa */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 header {
   background-color: white;
-  padding: 0 1rem; /* Espaçamento nas laterais */
-  height: 80px; /* Definindo altura fixa para o header */
+  padding: 0 1rem;
+  height: 80px;
   display: flex;
-  align-items: center; /* Centraliza os itens verticalmente */
-  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-button {
@@ -84,8 +85,9 @@ header {
   cursor: pointer;
   font: inherit;
   display: flex;
-  align-items: center; /* Garante que o conteúdo dentro do botão esteja centralizado verticalmente */
-  justify-content: center; /* Garante que o conteúdo dentro do botão esteja centralizado horizontalmente */
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: light) {

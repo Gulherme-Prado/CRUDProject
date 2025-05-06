@@ -88,31 +88,33 @@ export function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow-sm px-6 py-4">
-        <div className="header-nav-container text-black flex space-x-4">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className={classNames("nav-button", {
-              "text-orange-500 font-semibold": isDashboard,
-              "text-black": !isDashboard,
-            })}
-          >
-            Clientes
-          </button>
-          <button
-            onClick={() => navigate("/selected")}
-            className={classNames("nav-button", {
-              "text-orange-500 font-semibold": isSelected,
-              "text-black": !isSelected,
-            })}
-          >
-            Clientes Selecionados ({selectedIds.length})
-          </button>
-          <button onClick={() => navigate("/")} className="nav-button">
-            Sair
-          </button>
-        </div>
-        <div className="flex items-center text-black whitespace-nowrap ml-auto">
-          Olá, <span className="ml-2 pr-10 font-semibold">{userName}</span>
+        <div className="flex justify-between items-center w-screen">
+          <div className="header-nav-container bg-transparent text-black flex space-x-4">
+            <button
+              onClick={() => navigate("/dashboard")}
+              className={classNames("nav-button", {
+                "text-orange-500 font-semibold": isDashboard,
+                "text-black": !isDashboard,
+              })}
+            >
+              Clientes
+            </button>
+            <button
+              onClick={() => navigate("/selected")}
+              className={classNames("nav-button", {
+                "text-orange-500 font-semibold": isSelected,
+                "text-black": !isSelected,
+              })}
+            >
+              Clientes Selecionados ({selectedIds.length})
+            </button>
+            <button onClick={() => navigate("/")} className="nav-button">
+              Sair
+            </button>
+          </div>
+          <div className="flex absolute right-6 items-center text-black whitespace-nowrap ml-auto">
+            Olá, <span className="ml-2 pr-10 font-semibold">{userName}</span>
+          </div>
         </div>
       </header>
       <main className="container mx-auto p-4">
@@ -134,7 +136,7 @@ export function Dashboard() {
                 const value = parseInt(e.target.value);
                 if (!isNaN(value) && value > 0) {
                   setClientsPerPage(value);
-                  setPage(1); // resetar para primeira página
+                  setPage(1);
                 }
               }}
               className="w-20 px-2 py-1 border border-gray-300 rounded text-black"
